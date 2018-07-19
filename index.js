@@ -11,6 +11,8 @@ const config = {
   channelSecret: process.env.CHANNEL_SECRET,
 };
 
+// lesson counts
+const MAX_LESSON = 72;
 
 // create LINE SDK client
 const client = new line.Client(config);
@@ -122,7 +124,7 @@ function handleText(message, replyToken, source) {
             const rawdata = fs.readFileSync('lesson.json');
             const jsonData = JSON.parse(rawdata);
 
-            var i = getRandomInt(36);
+            var i = getRandomInt(MAX_LESSON);
 
             var ly = jsonData[i];
             var msg = textTemp(i +': \n' + ly);
@@ -144,7 +146,7 @@ function handlePostback(event, jsonData) {
         const rawdata = fs.readFileSync('lesson.json');
         const jsonData = JSON.parse(rawdata);
 
-        var i = getRandomInt(36);
+        var i = getRandomInt(MAX_LESSON);
 
         var ly = jsonData[i];
         var msg = textTemp(i +': \n' + ly);
